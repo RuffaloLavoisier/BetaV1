@@ -1,12 +1,12 @@
 name: echo pipeline
 description: echo value
 inputs:
-	title:
-    	description: echo sentence
-        required: true
-        default: test
+  title:
+    description: echo sentence
+      required: true
+      default: test
 runs:
-	using: docker
+  using: docker
     image: Dockerfile
     args:
-    	- ${{ inputs.title }}
+      - ${{ inputs.title }}
