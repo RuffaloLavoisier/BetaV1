@@ -16,6 +16,7 @@ TARGET_BRANCH="${9}"
 COMMIT_MESSAGE="${10}"
 TARGET_DIRECTORY="${11}"
 CREATE_TARGET_BRANCH_IF_NEEDED="${12}"
+RESET_FIRST_COMMIT="${13}"
 
 if [ -z "$DESTINATION_REPOSITORY_USERNAME" ]
 then
@@ -158,6 +159,13 @@ then
     # (it's not needed)
     # If the branch did not exist: it switches (creating) the branch
     git switch -c "$TARGET_BRANCH" || true
+fi
+
+if [ "$RESET_FIRST_COMMIT" = "true" ]
+then
+    echo "[+] Initialize the initial commit to the latest commit"
+    git update-ref -d HEAD
+    git rm --cached -r .
 fi
 
 echo "[+] Adding git commit"

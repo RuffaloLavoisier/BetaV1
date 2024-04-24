@@ -54,6 +54,12 @@ inputs:
       [Optional] create target branch if not exist. Defaults to `false`
     default: false
     required: false
+  resset-first-commit:
+    type: boolean
+    description: >-
+      [Optional] Initialize the initial commit to the latest commit on destination-repository. Defaults to `false`
+    default: false
+    required: false
 
 runs:
   using: docker
@@ -71,6 +77,7 @@ runs:
     - '${{ inputs.commit-message }}'
     - '${{ inputs.target-directory }}'
     - '${{ inputs.create-target-branch-if-needed }}'
+    - '${{ inputs.resset-first-commit }}'
 branding:
   icon: git-commit
   color: green
