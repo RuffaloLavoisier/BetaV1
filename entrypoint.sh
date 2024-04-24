@@ -179,5 +179,13 @@ echo "[+] git diff-index:"
 git diff-index --quiet HEAD || git commit --message "$COMMIT_MESSAGE"
 
 echo "[+] Pushing git commit"
-# --set-upstream: sets de branch when pushing to a branch that does not exist
-git push "$GIT_CMD_REPOSITORY" --set-upstream "$TARGET_BRANCH"
+if [ "$RESET_FIRST_COMMIT" = "true" ]
+then
+    echo "[+] Force push"
+    # push with --force option
+    git push "$GIT_CMD_REPOSITORY" --set-upstream "$TARGET_BRANCH" -f
+else
+    # --set-upstream: sets de branch when pushing to a branch that does not exist
+    git push "$GIT_CMD_REPOSITORY" --set-upstream "$TARGET_BRANCH"
+fi
+
