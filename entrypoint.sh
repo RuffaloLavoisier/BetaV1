@@ -165,7 +165,7 @@ if [ "$RESET_FIRST_COMMIT" = "true" ]
 then
     echo "[+] Initialize the initial commit to the latest commit"
     git update-ref -d HEAD
-    git rm --cached -r .
+    git rm -f --cached -r .
 fi
 
 echo "[+] Adding git commit"
